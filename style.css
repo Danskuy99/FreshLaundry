@@ -426,107 +426,96 @@ select.status-select {
    MEDIA QUERIES (PENYESUAIAN DESAIN RESPONSIF HP & TABLET)
    ========================================================= */
 
-/* --- TABLET & LAPTOP KECIL (Maksimal Lebar 992px) --- */
-@media screen and (max-width: 992px) {
-    .sidebar {
-        width: 80px;
-        padding: 20px 10px;
-    }
-
-    .brand span { display: none; } /* Sembunyikan teks nama brand */
-    .menu-item a {
-        justify-content: center;
-        padding: 12px;
-    }
-    .menu-item a span { display: none; } /* Sembunyikan teks menu */
-
-    .main-content {
-        margin-left: 80px;
-        width: calc(100% - 80px);
-        padding: 20px;
-    }
-}
-
-/* --- HP / SMARTPHONE (Maksimal Lebar 600px) --- */
 /* --- HP / SMARTPHONE (Maksimal Lebar 600px) --- */
 @media screen and (max-width: 600px) {
     .app-container {
         flex-direction: column;
     }
 
-    /* FIX BOTNAV ANDROID & IOS */
+    /* CONTAINER UTAMA BOTTOM NAV (FIXED) */
     .sidebar {
-        position: fixed;
-        bottom: 0;
-        top: auto;
-        left: 0;
-        width: 100%;
-        height: 65px;
-        background-color: var(--sidebar-bg);
-        display: block; /* Menggunakan block agar scroll horizontal bekerja sempurna */
-        padding: 0;
-        border-top: 1px solid var(--border);
-        box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
-        z-index: 9999;
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        height: 65px !important;
+        background-color: #1e293b !important;
+        padding: 0 !important;
+        border-top: 1px solid var(--border) !important;
+        box-shadow: 0 -4px 15px rgba(0,0,0,0.2) !important;
+        z-index: 99999 !important;
         
-        /* BISA DIGESER / SCROLL DI ANDROID & IOS */
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch; /* Mulus di iOS */
+        /* Mengaktifkan Scroll Horizontal di Container Utama */
+        overflow-x: scroll !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important; /* WAJIB UNTUK IOS SAFARI */
+        touch-action: pan-x !important; /* WAJIB UNTUK ANDROID CHROME */
     }
 
+    /* Sembunyikan Logo Brand di HP */
     .sidebar .brand { 
-        display: none; 
+        display: none !important; 
     }
 
+    /* LIST MENU YANG BISA DIGESER */
     .menu-list {
-        display: inline-flex; /* Agar menu berjajar ke samping secara fleksibel */
-        flex-direction: row;
-        width: max-content; /* Sesuai lebar total semua menu */
-        min-width: 100%;
-        justify-content: space-around;
-        padding: 8px 10px;
-        margin: 0;
-        list-style: none;
+        display: flex !important;
+        flex-direction: row !important;
+        width: max-content !important; /* Lebar otomatis mengikuti total 5 menu */
+        min-width: 100% !important;
+        height: 100% !important;
+        align-items: center !important;
+        padding: 0 10px !important;
+        margin: 0 !important;
+        list-style: none !important;
+        box-sizing: border-box !important;
     }
 
     .menu-item {
-        display: inline-block;
+        display: inline-block !important;
+        flex-shrink: 0 !important; /* MENCEGAH MENU TERSENSED / MENGECIL */
     }
 
     .menu-item a {
-        display: flex;
-        flex-direction: column; /* Ikon di atas, teks kecil di bawah (Khas App Mobile) */
-        align-items: center;
-        justify-content: center;
-        padding: 6px 14px;
-        font-size: 11px;
-        color: #94a3b8;
-        text-decoration: none;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 8px 16px !important;
+        min-width: 75px !important; /* Ukuran pas untuk jari */
+        color: #94a3b8 !important;
+        text-decoration: none !important;
+        border-radius: 8px !important;
+    }
+
+    .menu-item.active a {
+        background-color: var(--sidebar-active) !important;
+        color: #ffffff !important;
     }
 
     .menu-item a span {
-        display: block; /* Menampilkan teks nama menu kecil di HP */
-        font-size: 10px;
-        margin-top: 2px;
+        display: block !important;
+        font-size: 10px !important;
+        margin-top: 3px !important;
+        white-space: nowrap !important;
     }
 
     .menu-item i {
-        font-size: 20px;
+        font-size: 20px !important;
     }
 
-    /* Penyesuaian Main Content agar tidak tertutup BotNav */
+    /* MAIN CONTENT */
     .main-content {
         margin-left: 0 !important;
         width: 100% !important;
-        padding: 15px;
-        padding-bottom: 85px !important; /* Jarak aman dari menu bawah */
+        padding: 15px !important;
+        padding-bottom: 90px !important; /* Biar konten paling bawah tidak tertutup menu */
     }
 
     .top-header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: column !alignment: flex-start;
         gap: 12px;
     }
 
