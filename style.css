@@ -115,7 +115,7 @@ body {
     min-height: 100vh;
 }
 
-/* SIDEBAR (DESKTOP DEFAULT) */
+/* SIDEBAR */
 .sidebar {
     width: 260px;
     background-color: var(--sidebar-bg);
@@ -283,9 +283,13 @@ body {
 .stat-info h3 { font-size: 20px; color: var(--text-dark); }
 .stat-info p { font-size: 13px; color: var(--text-muted); }
 
-/* PAGE VIEWS & CARDS */
-.page-section { display: none; }
-.page-section.active { display: block; }
+/* PAGE VIEWS */
+.page-section { 
+    display: none !important; 
+}
+.page-section.active { 
+    display: block !important; 
+}
 
 .card {
     background: var(--card-bg);
@@ -339,19 +343,20 @@ body {
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 8px 14px;
     background-color: var(--primary);
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     transition: 0.2s;
+    text-decoration: none;
 }
 
 .btn:hover { background-color: var(--primary-hover); }
@@ -359,6 +364,8 @@ body {
 .btn-excel:hover { background-color: #059669; }
 .btn-danger { background-color: var(--danger); }
 .btn-danger:hover { background-color: #dc2626; }
+.btn-wa { background-color: #25d366; color: white; }
+.btn-wa:hover { background-color: #128c7e; }
 
 /* TABLES */
 .table-responsive {
@@ -372,7 +379,7 @@ table {
     border-collapse: collapse;
     text-align: left;
     font-size: 14px;
-    white-space: nowrap; /* Menjaga tabel tidak berantakan di layar kecil */
+    white-space: nowrap;
 }
 
 th {
@@ -392,19 +399,36 @@ td {
 .badge {
     padding: 4px 10px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+    display: inline-block;
 }
 
 .badge-pending { background: #fef3c7; color: #d97706; }
 .badge-process { background: #dbeafe; color: #2563eb; }
 .badge-success { background: #d1fae5; color: #059669; }
+.badge-danger { background: #fee2e2; color: #dc2626; }
 
 select.status-select {
     padding: 6px 10px;
     border-radius: 6px;
     border: 1px solid var(--border);
     font-size: 13px;
+    outline: none;
+    font-weight: 600;
+}
+
+/* STATUS PEMBAYARAN DROPDOWN COLORS */
+.pay-paid {
+    background-color: #d1fae5 !important;
+    color: #065f46 !important;
+    border-color: #10b981 !important;
+}
+
+.pay-nonpaid {
+    background-color: #fee2e2 !important;
+    color: #991b1b !important;
+    border-color: #ef4444 !important;
 }
 
 .filter-box {
@@ -419,20 +443,27 @@ select.status-select {
     border: 1px solid var(--border);
 }
 
-.admin-only { display: none; }
-
-
-/* =========================================================
-   MEDIA QUERIES (PENYESUAIAN DESAIN RESPONSIF HP & TABLET)
-   ========================================================= */
-
-/* --- HP / SMARTPHONE (Maksimal Lebar 600px) --- */
-@media screen and (max-width: 600px) {
-    .app-container {
-        flex-direction: column;
+/* RESPONSIF HP & TABLET */
+@media screen and (max-width: 992px) {
+    .sidebar {
+        width: 80px;
+        padding: 20px 10px;
     }
+    .brand span { display: none; }
+    .menu-item a {
+        justify-content: center;
+        padding: 12px;
+    }
+    .menu-item a span { display: none; }
+    .main-content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 20px;
+    }
+}
 
-    /* CONTAINER UTAMA BOTTOM NAV (FIXED) */
+@media screen and (max-width: 600px) {
+    .app-container { flex-direction: column; }
     .sidebar {
         position: fixed !important;
         bottom: 0 !important;
@@ -446,103 +477,44 @@ select.status-select {
         border-top: 1px solid var(--border) !important;
         box-shadow: 0 -4px 15px rgba(0,0,0,0.2) !important;
         z-index: 99999 !important;
-        
-        /* Mengaktifkan Scroll Horizontal di Container Utama */
         overflow-x: scroll !important;
         overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch !important; /* WAJIB UNTUK IOS SAFARI */
-        touch-action: pan-x !important; /* WAJIB UNTUK ANDROID CHROME */
+        -webkit-overflow-scrolling: touch !important;
     }
-
-    /* Sembunyikan Logo Brand di HP */
-    .sidebar .brand { 
-        display: none !important; 
-    }
-
-    /* LIST MENU YANG BISA DIGESER */
+    .sidebar .brand { display: none !important; }
     .menu-list {
         display: flex !important;
         flex-direction: row !important;
-        width: max-content !important; /* Lebar otomatis mengikuti total 5 menu */
+        width: max-content !important;
         min-width: 100% !important;
         height: 100% !important;
         align-items: center !important;
         padding: 0 10px !important;
         margin: 0 !important;
-        list-style: none !important;
-        box-sizing: border-box !important;
     }
-
-    .menu-item {
-        display: inline-block !important;
-        flex-shrink: 0 !important; /* MENCEGAH MENU TERSENSED / MENGECIL */
-    }
-
+    .menu-item { display: inline-block !important; flex-shrink: 0 !important; }
     .menu-item a {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
         padding: 8px 16px !important;
-        min-width: 75px !important; /* Ukuran pas untuk jari */
+        min-width: 75px !important;
         color: #94a3b8 !important;
-        text-decoration: none !important;
-        border-radius: 8px !important;
     }
-
     .menu-item.active a {
         background-color: var(--sidebar-active) !important;
         color: #ffffff !important;
     }
-
     .menu-item a span {
         display: block !important;
         font-size: 10px !important;
         margin-top: 3px !important;
-        white-space: nowrap !important;
     }
-
-    .menu-item i {
-        font-size: 20px !important;
-    }
-
-    /* MAIN CONTENT */
     .main-content {
         margin-left: 0 !important;
         width: 100% !important;
         padding: 15px !important;
-        padding-bottom: 90px !important; /* Biar konten paling bawah tidak tertutup menu */
-    }
-
-    .top-header {
-        flex-direction: column !alignment: flex-start;
-        gap: 12px;
-    }
-
-    .user-profile {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .card {
-        padding: 15px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .filter-box {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn {
-        width: 100%;
+        padding-bottom: 90px !important;
     }
 }
