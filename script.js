@@ -1,3 +1,6 @@
+// URL GOOGLE APPS SCRIPT ANDA
+const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbzXHPU0Gt-2kWrFra2Bk5IiykkSFcfZxVwz_4I7DSHEBHMCUG7LsAEvGwIsrcoE9Dg_Jg/exec";
+
 // DATA INITIAL (STORAGE)
 let orders = JSON.parse(localStorage.getItem('fl_orders')) || [
     { id: 'LD-1001', nama: 'Budi Santoso', telepon: '081234567890', layanan: 'Cuci Komplit (Cuci + Setrika)', jumlah: 5, total: 35000, tanggal: '2026-03-28', alamat: 'Jl. Merdeka No. 12', status: 'Menunggu', paymentStatus: 'Paid' },
